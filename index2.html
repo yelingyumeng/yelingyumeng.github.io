@@ -4,32 +4,24 @@
     <title>larkplayer quick start</title>
 </head>
 <body>
-    <video id="my-video" src="https://baikebcs.bdimg.com/baike-other/big-buck-bunny.mp4" width="400" height="300" controls webkit-playsinline="" playsinline="" x-webkit-airplay="allow" x5-playsinline="">
-        请升级浏览器以支持 html5 video
-    </video>
- 
+    <div id="container"></div>
     <script type="text/javascript" src="https://unpkg.com/larkplayer@latest/dist/larkplayer.js"></script>
     <script type="text/javascript">
         // js 文件以 umd 的形式包装，以 script 的形式引用时，larkplayer 会直接挂载在 window 上
-        var player = larkplayer('my-video', {
-            width: 640,
-            height: 360
-        }, function () {
-            console.log('player is ready');
+        var width = Math.min(document.body.clientWidth, 640);
+        var player = larkplayer('container', {
+            width: width,
+            height: width * 9 / 16,
+            controls: true,
+            src: 'https://baikebcs.bdimg.com/baike-other/big-buck-bunny.mp4'
         });
 
-        player.on('firstplay', function () {
-            console.log('firstplay');
-        });
-
-        // 支持所有的 html5 标准事件
+        // 支持所有的 html5 标准事件以及一些自定义事件
         player.on('play', function () {
             console.log('play');
         });
         player.on('ended', function () {
-            console.log('ended');
-            player.src('http://www.w3school.com.cn/i/movie.ogg');
-            player.play();
+            console.log('播放完成!');
         });
     </script>
 </body>
