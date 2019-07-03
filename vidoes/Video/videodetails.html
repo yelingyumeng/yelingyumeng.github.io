@@ -26,10 +26,13 @@
 			video {
 				object-fit: fill;
 			}
-
+			
 			.psVideo {
 				height: 100%;
 				z-index: 99999;
+			}
+			.lark-fullscreen-button{
+				width: auto !important;
 			}
 		</style>
 	</head>
@@ -38,67 +41,7 @@
 		<div class="platform_content">
 			<div class="video_details_content">
 				<div class="video_details">
-					<div id="psVideo" class="psVideo">
-						<!-- {$video_url.PlayURL}  -->
-						<video poster="" src="http://v.hweelink.com/f9f8c1f5133145208be8ee0018333b7b/4fb1d13d0106405f8ba4dfb4aa583904-e0ce63b27cb29e5bf075c2385e7d9aa6-ld.mp4"
-						 class="my-psVideo" id="my-video" preload="metadata"   webkit-playsinline="" playsinline="" x-webkit-airplay="allow" x5-playsinline="" poster="" >
-						</video>
-						<div class="psVideo-loading">
-							<!--<span></span>
-							<span></span>
-							<span></span>-->
-						</div>
-						<div class="psVideo-play-one"></div>
-						<div class="psVideo-shade psVideo-shade-on">
-							<div class="psVideo-play-footer">
-								<div class="psVideo-progress">
-									<span class="psVideo-timeBar"></span>
-								</div>
-								<div class="psVideo-play-btn psVideo-stop"></div>
-								<div class="psVideo-time">
-									<span id="currentTime">00:00</span>
-									<span>/</span>
-									<span id="duration">00:00</span>
-								</div>
-								<div class="psVideo-right-btn">
-									<div class="psVideo-btn all"></div>
-									<!--<div class="psVideo-btn loop" id="loop"></div>-->
-									<div class="psVideo-btn sound" id="soundBtn">
-										<div class="sound-list">
-											<div class="sound-number">90</div>
-											<div class="volume">
-												<span class="volumeBar"></span>
-											</div>
-										</div>
-										<div class="konge"></div>
-									</div>
-									<!--<div class="psVideo-btn set china_video_btn">
-										<span class="speed_active">倍数</span>
-										<div class="set-list">
-											<div class="play-speed-list">
-												<p id="speed05Btn">0.5X</p>
-												<p class="moren" id="speed1Btn">1.0X</p>
-												<p id="speed2Btn">2.0X</p>
-											</div>
-										</div>
-										<div class="konge1"></div>
-									</div>-->
-									<!--<div class="psVideo-btn set china_video_btn clarity_btns">
-										<span class="clarity_active">标清</span>
-										<div class="set-list">
-											<div class="play-speed-list">
-												<p class="clarity moren" clarity-data="270">标清</p>
-												<p class="clarity" clarity-data="480">高清</p>
-												<p class="clarity" clarity-data="720">超清</p>
-											</div>
-										</div>
-										<div class="konge1"></div>
-									</div>-->
-								</div>
-			
-							</div>
-						</div>
-					</div>
+					 <video id="video-el" src="https://baikebcs.bdimg.com/baike-other/big-buck-bunny.mp4" webkit-playsinline="webkit-playsinline" playsinline="playsinline" x5-playsinline="x5-playsinline" x-webkit-airplay="allow"></video>
 				</div>
 			</div>
 			<div class="video_text">
@@ -151,50 +94,56 @@
 						 class="my-psVideo" id="my-video" preload="metadata"   webkit-playsinline="" playsinline="" x-webkit-airplay="allow" x5-playsinline="" poster="" >
 						</video>
 	</body>
-	<include file="Public/sfooter"/>
 
-	<script type="text/javascript" src="js/video.js"></script>
+	<script src="__PUBLIC__/Platform/js/Video/js/larkplayer.js"></script>
+   	 <script src="__PUBLIC__/Platform/js/Video/js/larkplayer-ui.js"></script>
+	<!--<script type="text/javascript" src="__PUBLIC__/Platform/js/Video/js/video.js"></script>-->
 	<script type="text/javascript">
+        var width = Math.min(document.body.clientWidth, 640);
+        var player = larkplayer('video-el', {
+            width: width,
+            height: width * 9 / 16
+        });
 		//各个视频的展示
 		var play = 0;
 		var video = {
 			// $ video
 		};
-		if (video) {
-			for (var i in video) {
-				console.log(video[i]);
-				var PlayAuth = video[i].play_auth;
-				var VideoId = video[i].video_id;
-				var video_id = video[i].id;
-				var width = $("#" + video_id).css('width');
-				var height = $("#" + video_id).parent().parent().css('height');
-				console.log(width, height);
-				var player = Aliplayer({
-					id: video_id,
-					autoplay: false,
-					width: width,
-					height: height,
-					vid: VideoId,
-					playauth: PlayAuth,
-				});
-				player.on('ready', function(e) {
-					player.play({
-						setVolume: 0.5,
-						isLive: false
-					});
-				});
-			}
-		}
-		//像素切换
-		$('.clarity_btns').on('click', '.clarity', function() {
-			var video = $('.my-psVideo')[0];
-			var this_time = video.currentTime;
-			var clarity_url = $(this).attr('url');
-			$('.my-psVideo').attr('src', clarity_url);
-			video.currentTime = this_time;
-			video.play()
-		})
-}
+// 		if (video) {
+// 			for (var i in video) {
+// 				console.log(video[i]);
+// 				var PlayAuth = video[i].play_auth;
+// 				var VideoId = video[i].video_id;
+// 				var video_id = video[i].id;
+// 				var width = $("#" + video_id).css('width');
+// 				var height = $("#" + video_id).parent().parent().css('height');
+// 				console.log(width, height);
+// 				var player = Aliplayer({
+// 					id: video_id,
+// 					autoplay: false,
+// 					width: width,
+// 					height: height,
+// 					vid: VideoId,
+// 					playauth: PlayAuth,
+// 				});
+// 				player.on('ready', function(e) {
+// 					player.play({
+// 						setVolume: 0.5,
+// 						isLive: false
+// 					});
+// 				});
+// 			}
+// 		}
+// 		//像素切换
+// 		$('.clarity_btns').on('click', '.clarity', function() {
+// 			var video = $('.my-psVideo')[0];
+// 			var this_time = video.currentTime;
+// 			var clarity_url = $(this).attr('url');
+// 			$('.my-psVideo').attr('src', clarity_url);
+// 			video.currentTime = this_time;
+// 			video.play()
+// 		})
+// }
 		
 	</script>
 
