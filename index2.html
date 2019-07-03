@@ -1,56 +1,36 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<style>
-		/*这是CSS*/
-html,body,.main{
-   width: 100%;
-   height: 100%;
-   overflow: hidden;//隐藏
-   background: #FFF;
-   box-sizing:border-box;
-}
-.videobox{
-   z-index: 12;
-   position: fixed;
-   left: 0;
-   top: 0;
-   width: 100%;
-   height: 100%;
-}
-#video{
-    position: absolute;
-    top: -2%;
-    width: 100%;
-    height: 110%;
-}</style>
-	</head>
-	<body>
-		
+<head>
+    <title>larkplayer quick start</title>
+</head>
+<body>
+    <video id="my-video" src="https://baikebcs.bdimg.com/baike-other/big-buck-bunny.mp4" width="400" height="300" controls>
+        请升级浏览器以支持 html5 video
+    </video>
+ 
+    <script type="text/javascript" src="https://unpkg.com/larkplayer@latest/dist/larkplayer.js"></script>
+    <script type="text/javascript">
+        // js 文件以 umd 的形式包装，以 script 的形式引用时，larkplayer 会直接挂载在 window 上
+        var player = larkplayer('my-video', {
+            width: 640,
+            height: 360
+        }, function () {
+            console.log('player is ready');
+        });
 
+        player.on('firstplay', function () {
+            console.log('firstplay');
+        });
 
-
-<div class="videobox" ontouchmove="return false;">
-    <video  poster="img/test.jpg" webkit-playsinline="true" playsinline x5-video-player-type="h5"  x-webkit-airplay="true" id="video">
-        <source src="http://v.hweelink.com/f9f8c1f5133145208be8ee0018333b7b/4fb1d13d0106405f8ba4dfb4aa583904-e0ce63b27cb29e5bf075c2385e7d9aa6-ld.mp4" type="video/mp4">
-        <source src="img/movie.ogg" type="video/ogg">
-        您的浏览器不支持该视频格式。
-    video>
-	   
-div>
-	    
-	    <button onclick="video.play()">播放</button>
-<!-- 	 <video id="my-video" class="video-js"  width="960" height="400"
-		 controls   preload="auto"   webkit-playsinline="" playsinline="" x-webkit-airplay="allow" x5-playsinline="" poster="" >
-        <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
-    	<source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
-    	<source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg">
-        <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
-      </video> -->
-	</body>
-	<script>
-		$('video').attr('webkit-playsinline','true');
-	</script>
-	</html>
+        // 支持所有的 html5 标准事件
+        player.on('play', function () {
+            console.log('play');
+        });
+        player.on('ended', function () {
+            console.log('ended');
+            player.src('http://www.w3school.com.cn/i/movie.ogg');
+            player.play();
+        });
+    </script>
+</body>
+</html>
