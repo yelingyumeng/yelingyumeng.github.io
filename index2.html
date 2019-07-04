@@ -21,18 +21,43 @@
 		.lark-custom-controls{
 			display:none;
 		}
+		.imgcontainer{
+				position: relative;
+				width:100%;
+				height:4.2rem;
+			}
+			.imgcont_icon{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				width: 48px;
+				height: 48px;
+			}
+			.img_icon{
+				width: 100%;
+			    height: 100%;
+   				background: url(data:image/png;base64,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) center no-repeat;
+				background-size: contain;
+			}
+			.imgcont{
+				 width:100%;
+				 height:4.2rem;
+			}
 	</style>
     </head>
 <body>
 	
-<!-- 	<div class="video_cont"> -->
 		  <video id="video-el" src="https://baikebcs.bdimg.com/baike-other/big-buck-bunny.mp4" controls
  webkit-playsinline="webkit-playsinline" playsinline="playsinline" x5-playsinline="x5-playsinline" 
 		 >
 	
 	</video>
-	<img id="imgcont" src="http://img.hweelink.com/advert_image/2019-06/2defc54da01808d37f239479601970db91.jpg" style="width:100%"></img>
-	<buttom id="abc">1111111</button>
+	<div class="imgcontainer" id="imgcontainer">
+			<!--封面-->
+			<div class="imgcont_icon"><div class="img_icon"></div></div>
+			<img class="imgcont" src="http://img.hweelink.com/advert_image/2019-06/2defc54da01808d37f239479601970db91.jpg"/>
+		</div>
 	<dl class="related_item">
 						<dt class="related_title">
 							<a href="" class="related_title_txt c_ellipsis_3">BUMO开启全球大使计划，11月17日北京站不见不散</a>
@@ -109,15 +134,14 @@
 //              width: width,
 //             height: width * 9 / 16 
         });
-	   var abc = document.getElementById("abc");
 	   var video = document.getElementById("video-el");
-	   var imgs =  document.getElementById("imgcont");
-	   abc.onclick=function(){
+	   var imgcontainer =  document.getElementById("imgcontainer");
+	   imgcontainer.onclick=function(){
 		   video.play();
 		   video.style.width="100%";
 		    video.style.height="100%";
 		   video.style.position="static"
-		   imgs.style.dispaly="none";
+		   imgcontainer.style.dispaly="none";
 		   
 	   }
            
