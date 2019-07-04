@@ -16,10 +16,16 @@
 		#video-el{
 			width:1px;
 			height:1px;
+			position:absolute;
+			top:-1px;
+		}
+		.lark-control-bar{
+			display:none;
 		}
 	</style>
     </head>
 <body>
+	
 <!-- 	<div class="video_cont"> -->
 		  <video id="video-el" src="https://baikebcs.bdimg.com/baike-other/big-buck-bunny.mp4" controls
  webkit-playsinline="webkit-playsinline" playsinline="playsinline" x5-playsinline="x5-playsinline" x5-video-player-fullscreen='true'
@@ -27,6 +33,7 @@
 		 >
 	
 	</video>
+	<img id="imgs" style="width:100%"></img>
 	<buttom id="abc">1111111</button>
 	<dl class="related_item">
 						<dt class="related_title">
@@ -104,13 +111,14 @@
 //              width: width,
 //             height: width * 9 / 16 
         });
-	   var video = document.getElementById("abc");
+	   var abc = document.getElementById("abc");
 	   var video = document.getElementById("video-el");
-	   
+	   var imgs =  document.getElementById("imgs");
 	   abc.onclick=function(){
 		   video.play();
 		   video.style.width="100%";
 		    video.style.height="100%";
+		   imgs.style.dispaly="none";
 	   }
            
     </script> 
