@@ -137,13 +137,21 @@
 //             height: width * 9 / 16 
         });
 	    var video = document.getElementById("video-el");
-	    $('.imgcontainer').click(function(){
-	   		video.play();
+	    var imgcontainer =  document.getElementByclassName('imgcontainer');
+		imgcontainer.onclick=function(){
+			video.play();
 		    video.style.width="100%";
 		    video.style.height="100%";
 		    video.style.position="static"
-		 	$('.imgcontainer').hide();
-	    })	 
+			imgcontainer.style.display="none";
+		}
+// 	    $('.imgcontainer').click(function(){
+// 	   		video.play();
+// 		    video.style.width="100%";
+// 		    video.style.height="100%";
+// 		    video.style.position="static"
+// 		 	$('.imgcontainer').hide();
+// 	    })	 
 		   
 // 		if (video) {
 // 			for (var i in video) {
