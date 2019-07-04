@@ -75,7 +75,7 @@
 	<body>
 		<video id="video-el" src="https://baikebcs.bdimg.com/baike-other/big-buck-bunny.mp4" controls
  		webkit-playsinline="webkit-playsinline" playsinline="playsinline" x5-playsinline="x5-playsinline" ></video>
-		<div class="imgcontainer">
+		<div class="imgcontainer" id="imgcontainer">
 			<!--封面-->
 			<div class="imgcont_icon"><div class="img_icon"></div></div>
 			<img class="imgcont" src="http://img.hweelink.com/advert_image/2019-06/2defc54da01808d37f239479601970db91.jpg"/>
@@ -137,7 +137,8 @@
 //             height: width * 9 / 16 
         });
 	    var video = document.getElementById("video-el");
-	    var imgcontainer =  document.getElementByclassName('imgcontainer');
+		
+	    var imgcontainer =  document.getElementById('imgcontainer');
 		imgcontainer.onclick=function(){
 			video.play();
 		    video.style.width="100%";
